@@ -1,0 +1,14 @@
+1.	Initial sequence of n jobs in ascending order. [0 1 2 …. n]
+2.	Start with 4 jobs [0 1 2 3]. Permute 4! = 24 sequences. Set i=4.
+3.	Calculate makespan for each of the 24 sequences (using only the corresponding rows of the matrix to calculate). Arrange in ascending order of makespan.
+4.	Select best 20 sequences.
+5.	Clone using RWS to have 3 * 20 = 60 sequences.
+6.	Select best 20 sequences.
+7.	For each of 20 sequences, apply Ordered Crossover with the other 19 sequences. => 20 * 19 = 380 sequences.
+8.	Select best 20 sequences.
+9.	Apply Mutation (tried different types) on each of the 20 sequences to get 20 more sequences => 40 sequences.
+10.	Select best 20 sequences.
+11.	Increment i. If i>n goto Step 14.
+12.	Add i-th job to each of the 20 sequences to each possible position.
+13.	Goto step 4.
+14.	Select the best sequence.
