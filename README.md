@@ -4,17 +4,11 @@ Done as a master's degree project at St. Xavier's College, Kolkata, under the su
 
 Team members: Proyag Pal, Kaustav Basu and Triparna Mukherjee.
 
-<https://en.wikipedia.org/wiki/Flow_shop_scheduling>
+A special type of [flow shop scheduling problem](https://en.wikipedia.org/wiki/Flow_shop_scheduling) is the permutation flow shop scheduling problem in which the processing order of the jobs on the resources is the same for each subsequent step of processing.
 
-A special type of flow shop scheduling problem is the permutation flow shop scheduling problem in which the processing order of the jobs on the resources is the same for each subsequent step of processing.
+We used [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) to optimize permutation flow shop scheduling problems on the basis of their makespan values.
 
-<https://en.wikipedia.org/wiki/Genetic_algorithm>
-
-We used genetic algorithms to optimize permutation flow shop scheduling problems on the basis of their makespan values.
-
-<http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf>
-
-Evaluated our method by comparing our results against the benchmarks published by Eric Taillard.
+Evaluated our method by comparing our results against the [benchmarks published by Eric Taillard](http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf).
 
 The Code folder contains:
 
