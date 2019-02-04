@@ -10,6 +10,9 @@ We used [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) to
 
 Evaluated our method by comparing our results against the [benchmarks published by Eric Taillard](http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf).
 
+
+### Contents:
+
 `Makespans.xlsx`: Contains Eric Taillard's benchmarks and our results along with the average relative percentage difference (ARPD).
 
 `genetic.py`: contains the genetic algorithms used - inverse mutation, pairwise swap mutation, ordered crossover.
