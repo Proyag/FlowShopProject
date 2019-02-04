@@ -10,17 +10,13 @@ We used [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) to
 
 Evaluated our method by comparing our results against the [benchmarks published by Eric Taillard](http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf).
 
-The Code folder contains:
+`Makespans.xlsx`: Contains Eric Taillard's benchmarks and our results along with the average relative percentage difference (ARPD).
 
-```genetic.py```: contains the genetic algorithms used - inverse mutation, pairwise swap mutation, ordered crossover.
+`genetic.py`: contains the genetic algorithms used - inverse mutation, pairwise swap mutation, ordered crossover.
 
-```Integrated.py```: Runs a GUI to explore the results on our method on the benchmark problems one at a time.
+`Integrated.py`: Runs a GUI to explore the results on our method on the benchmark problems one at a time.
 
-```Run.py```: Runs the optimization algorithm on all the 120 problems in the benchmarks. **WARNING**: Takes hours to run.
-
-```Makespans.xlsx```: Contains the benchmarks and our results along with the average relative percentage difference (ARPD).
-
-```Taillard.xlsx```: Contains Taillard's benchmarks.
+`Run.py`: Runs the optimization algorithm on all the 120 problems in the benchmarks. **WARNING**: Takes hours to run.
 
 
 
