@@ -1,9 +1,15 @@
 # Use this for GUI version
 import numpy as np
 import openpyxl as ox
+import random
+import sys
 
+from itertools import permutations
 from tkinter import ttk, font
 from tkinter import Tk, N, E, W, S, IntVar, StringVar
+
+import genetic
+
 
 # Read jobs, machines, timeseed columns from Taillard.xlsx
 # and store them in three lists
@@ -95,7 +101,6 @@ def roulette_wheel(sequence, makespan):
     mks = np.empty(newsize)
 
     # Generate 'newsize' number of sequences
-    import random
     for r in range(newsize):
         # Generating random value between 0 and total_sum
         x = random.uniform(0, total_sum)
@@ -127,8 +132,6 @@ def sort_and_reduce(s, m):
 
 
 def calculate_optimal_makespan(*args):
-    import genetic
-    import sys
     # To make command line print complete nd arrays
     np.set_printoptions(threshold=sys.maxsize)
 
@@ -150,11 +153,10 @@ def calculate_optimal_makespan(*args):
     at = a.transpose()
 
     # Start with all possible permutations of first 4 jobs
-    import itertools
     init_jobs = 4
     init_job_list = list(range(init_jobs))
     # Generate all 24 permutations
-    sequence_list = np.array(list(itertools.permutations(init_job_list)))
+    sequence_list = np.array(list(permutations(init_job_list)))
 
     # This loop will eventually run till init_jobs <= jobs
     while init_jobs <= jobs:

@@ -2,6 +2,12 @@
 import random
 import numpy as np
 import openpyxl as ox
+import sys
+
+from itertools import permutations
+
+import genetic
+
 
 # Read jobs, machines, timeseed columns from Taillard.xlsx and store them in three lists
 # Initialize lists
@@ -126,8 +132,6 @@ def sort_and_reduce(s, m):
 
 
 def main():
-    import genetic
-    import sys
     # To make command line print complete nd arrays.
     np.set_printoptions(threshold=sys.maxsize)
     # Run for entire 120 problem range
@@ -142,11 +146,10 @@ def main():
         at = a.transpose()
 
         # Start with all possible permutations of first 4 jobs
-        import itertools
         init_jobs = 4
         init_job_list = list(range(init_jobs))
         # Generate all 24 permutations
-        sequence_list = np.array(list(itertools.permutations(init_job_list)))
+        sequence_list = np.array(list(permutations(init_job_list)))
 
         # This loop will run till init_jobs == jobs
         while init_jobs <= jobs:
