@@ -37,6 +37,6 @@ The Code folder contains:
 9.	Apply Mutation (tried different types) on each of the 20 sequences to get 20 more sequences => 40 sequences.
 10.	Select best 20 sequences.
 11.	Increment i. If i>n goto Step 14.
-12.	Add i-th job to each of the 20 sequences to each possible position.
+12.	Add i<sup>th</sup> job to each of the 20 sequences to each possible position.
 13.	Goto step 4.
 14.	Select the best sequence.
