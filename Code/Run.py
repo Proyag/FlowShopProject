@@ -9,7 +9,7 @@ timeseed_list = []
 jobs_list = []
 machines_list = []
 makespans = []
-taillard_file = ox.load_workbook('Makespans.xlsx') # Load workbook
+taillard_file = ox.load_workbook('../Makespans.xlsx') # Load workbook
 taillard = taillard_file.get_sheet_by_name('Sheet1') # Load sheet
 
 # Values are in rows 3 to 122 of the Taillard.xlsx Excel sheet
