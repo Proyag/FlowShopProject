@@ -3,7 +3,7 @@ import numpy as np
 import openpyxl as ox
 
 from tkinter import ttk, font
-from tkinter import *  # NOQA
+from tkinter import Tk, N, E, W, S, IntVar, StringVar
 
 # Read jobs, machines, timeseed columns from Taillard.xlsx
 # and store them in three lists
