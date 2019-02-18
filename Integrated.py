@@ -1,7 +1,6 @@
 # Use this for GUI version
 import numpy as np
 import openpyxl as ox
-import random
 import sys
 
 from itertools import permutations
@@ -83,39 +82,6 @@ def calculate_makespan(a, seq):
     return int(b[-1, -1])
 
 
-def roulette_wheel(sequence, makespan):
-    # Store inverses of makespan values in a list
-    inverse = []
-    for i in makespan:
-        j = 1 / i
-        inverse.append(j)
-
-    total_sum = 0
-    # Calculating sum of all the inverted values
-    for i in inverse:
-        total_sum = total_sum + i
-
-    # Generate arrays of newsize = 3 * previous size, according to RWS
-    newsize = 3 * len(makespan)
-    seq = np.ndarray((newsize, sequence.shape[1]))
-    mks = np.empty(newsize)
-
-    # Generate 'newsize' number of sequences
-    for r in range(newsize):
-        # Generating random value between 0 and total_sum
-        x = random.uniform(0, total_sum)
-        partial_sum = 0
-
-        for i in range(len(inverse)):
-            partial_sum = partial_sum + inverse[i]
-            if partial_sum >= x:
-                mks[r] = makespan[i]
-                seq[r] = sequence[i]
-                break
-
-    return seq, mks
-
-
 def sort_one_list_by_another(s, m):
     # Sort elements in s and m according to m
     indices = m.argsort()
@@ -125,6 +91,7 @@ def sort_one_list_by_another(s, m):
 
 
 def sort_and_reduce(s, m):
+    print(s, m)
     s, m = sort_one_list_by_another(s, m)
     s = s[:20]
     m = m[:20]
@@ -170,7 +137,7 @@ def calculate_optimal_makespan(*args):
         sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
 
         # Roulette wheel .. 3 x 20 output
-        sequence_list, makespan_list = roulette_wheel(sequence_list, makespan_list)
+        sequence_list, makespan_list = genetic.roulette_wheel(sequence_list, makespan_list)
 
         # Again, sort and reduce to 20
         sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
