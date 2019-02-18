@@ -9,25 +9,8 @@ from utils import *
 import genetic
 
 
-# Read jobs, machines, timeseed columns from Taillard.xlsx and store them in three lists
-# Initialize lists
-timeseed_list = []
-jobs_list = []
-machines_list = []
-makespans = []
 taillard_file = ox.load_workbook('Makespans.xlsx')  # Load workbook
 taillard = taillard_file.get_sheet_by_name('Sheet1')  # Load sheet
-
-# Values are in rows 3 to 122 of the Taillard.xlsx Excel sheet
-for i in range(3, 123):
-    j = taillard.cell(row=i, column=1).value  # Read Jobs value
-    m = taillard.cell(row=i, column=2).value  # Read Machines value
-    t = taillard.cell(row=i, column=3).value  # Read Timeseed value
-    v = taillard.cell(row=i, column=6).value  # Read our best makespan
-    jobs_list.append(j)
-    machines_list.append(m)
-    timeseed_list.append(t)
-    makespans.append(v)
 
 
 def main():
@@ -35,9 +18,10 @@ def main():
     np.set_printoptions(threshold=sys.maxsize)
     # Run for entire 120 problem range
     for problem in range(0, 120):
-        jobs = jobs_list[problem]
-        machines = machines_list[problem]
-        timeseed = timeseed_list[problem]
+        jobs = taillard.cell(row=problem+3, column=1).value
+        machines = taillard.cell(row=problem+3, column=2).value
+        timeseed = taillard.cell(row=problem+3, column=3).value
+        prev_best_makespan = taillard.cell(row=problem+3, column=6).value
         # Generate processing time matrix
         a = random_matrix(machines, jobs, timeseed)
 
@@ -68,7 +52,8 @@ def main():
             sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
             # print("Best 20\n", sequence_list, makespan_list)
 
-            # Now ordered crossover each of the 20 sequences with each other and add to lists
+            # Now ordered crossover each of the 20 sequences with each other
+            # and add to lists
             for i in range(20):
                 for j in range(20):
                     if i != j:
@@ -132,7 +117,7 @@ def main():
         best_sequence = list(map(int, best_sequence))
         best_sequence = list(map(str, best_sequence))
         best_sequence = ', '.join(best_sequence)
-        if best_makespan < makespans[problem]:
+        if best_makespan < prev_best_makespan:
             taillard.cell(row=problem + 3, column=6).value = best_makespan
             taillard.cell(row=problem + 3, column=7).value = best_sequence
             taillard_file.save('Makespans.xlsx')

@@ -11,23 +11,8 @@ from utils import *
 import genetic
 
 
-# Read jobs, machines, timeseed columns from Taillard.xlsx
-# and store them in three lists
-timeseed_list = []  # Initialize lists
-jobs_list = []
-machines_list = []
-makespans = []
 taillard_file = ox.load_workbook('Makespans.xlsx')  # Load workbook
 taillard = taillard_file.get_sheet_by_name('Sheet1')  # Load sheet
-
-# Values are in rows 3 to 122 of Taillard.xlsx
-for i in range(3, 123):
-    j = taillard.cell(row=i, column=1).value  # Read Jobs value
-    m = taillard.cell(row=i, column=2).value  # Read Machines value
-    t = taillard.cell(row=i, column=3).value  # Read Timeseed value
-    jobs_list.append(j)
-    machines_list.append(m)
-    timeseed_list.append(t)
 
 
 def calculate_optimal_makespan(*args):
@@ -36,9 +21,9 @@ def calculate_optimal_makespan(*args):
 
     problem = problem_num.get()
 
-    jobs = jobs_list[problem]
-    machines = machines_list[problem]
-    timeseed = timeseed_list[problem]
+    jobs = taillard.cell(row=problem+3, column=1).value
+    machines = taillard.cell(row=problem+3, column=2).value
+    timeseed = taillard.cell(row=problem+3, column=3).value
 
     # Write these to GUI
     jobs_val.set(jobs)
@@ -150,69 +135,70 @@ def decrement(*args):
     calculate_optimal_makespan()
 
 
-root = Tk()
-# Format window size
-# root.geometry('{}x{}'.format(1920, 1080))
-# Give the window a name
-root.title("Scheduling Optimization")
+if __name__ == '__main__':
+    root = Tk()
+    # Format window size
+    # root.geometry('{}x{}'.format(1920, 1080))
+    # Give the window a name
+    root.title("Scheduling Optimization")
 
-# Creating frame inside window for ttk stuff
-mainframe = ttk.Frame(root, padding="3 3 12 12")
-mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
-mainframe.columnconfigure(1, weight=1)
-mainframe.columnconfigure(2, weight=3)
-mainframe.columnconfigure(3, weight=1)
-mainframe.rowconfigure(1, weight=1)
-mainframe.rowconfigure(2, weight=1)
-mainframe.rowconfigure(3, weight=1)
-mainframe.rowconfigure(4, weight=1)
-mainframe.rowconfigure(5, weight=1)
-mainframe.rowconfigure(6, weight=1)
-mainframe.rowconfigure(7, weight=1)
+    # Creating frame inside window for ttk stuff
+    mainframe = ttk.Frame(root, padding="3 3 12 12")
+    mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
+    mainframe.columnconfigure(1, weight=1)
+    mainframe.columnconfigure(2, weight=3)
+    mainframe.columnconfigure(3, weight=1)
+    mainframe.rowconfigure(1, weight=1)
+    mainframe.rowconfigure(2, weight=1)
+    mainframe.rowconfigure(3, weight=1)
+    mainframe.rowconfigure(4, weight=1)
+    mainframe.rowconfigure(5, weight=1)
+    mainframe.rowconfigure(6, weight=1)
+    mainframe.rowconfigure(7, weight=1)
 
-MyFont = font.Font(family='Helvetica', size=20)
+    MyFont = font.Font(family='Helvetica', size=20)
 
-problem_num = IntVar()
-makespan_val = IntVar()
-jobs_val = IntVar()
-macs_val = IntVar()
-time_val = IntVar()
+    problem_num = IntVar()
+    makespan_val = IntVar()
+    jobs_val = IntVar()
+    macs_val = IntVar()
+    time_val = IntVar()
 
-problem_entry = ttk.Entry(mainframe, width=20, font=MyFont, textvariable=problem_num)
-problem_entry.grid(column=2, row=1, sticky=(W, E))
-ttk.Label(mainframe, textvariable=makespan_val, font=MyFont).grid(column=2, row=6, sticky=(W, E))
-ttk.Button(mainframe, text="Calculate", width=30, command=calculate_optimal_makespan).grid(column=3, row=1, sticky=(E))
-ttk.Label(mainframe, text="Problem No.", font=MyFont).grid(column=1, row=1, sticky=(W, E))
-ttk.Label(mainframe, text="Optimal makespan", font=MyFont).grid(column=1, row=6, sticky=(W, E))
+    problem_entry = ttk.Entry(mainframe, width=20, font=MyFont, textvariable=problem_num)
+    problem_entry.grid(column=2, row=1, sticky=(W, E))
+    ttk.Label(mainframe, textvariable=makespan_val, font=MyFont).grid(column=2, row=6, sticky=(W, E))
+    ttk.Button(mainframe, text="Calculate", width=30, command=calculate_optimal_makespan).grid(column=3, row=1, sticky=(E))
+    ttk.Label(mainframe, text="Problem No.", font=MyFont).grid(column=1, row=1, sticky=(W, E))
+    ttk.Label(mainframe, text="Optimal makespan", font=MyFont).grid(column=1, row=6, sticky=(W, E))
 
-ttk.Label(mainframe, text="Jobs", font=MyFont).grid(column=1, row=3, sticky=(W, E))
-ttk.Label(mainframe, textvariable=jobs_val, font=MyFont).grid(column=2, row=3, sticky=(W, E))
-ttk.Label(mainframe, text="Machines", font=MyFont).grid(column=1, row=4, sticky=(W, E))
-ttk.Label(mainframe, textvariable=macs_val, font=MyFont).grid(column=2, row=4, sticky=(W, E))
-ttk.Label(mainframe, text="Timeseed", font=MyFont).grid(column=1, row=5, sticky=(W, E))
-ttk.Label(mainframe, textvariable=time_val, font=MyFont).grid(column=2, row=5, sticky=(W, E))
+    ttk.Label(mainframe, text="Jobs", font=MyFont).grid(column=1, row=3, sticky=(W, E))
+    ttk.Label(mainframe, textvariable=jobs_val, font=MyFont).grid(column=2, row=3, sticky=(W, E))
+    ttk.Label(mainframe, text="Machines", font=MyFont).grid(column=1, row=4, sticky=(W, E))
+    ttk.Label(mainframe, textvariable=macs_val, font=MyFont).grid(column=2, row=4, sticky=(W, E))
+    ttk.Label(mainframe, text="Timeseed", font=MyFont).grid(column=1, row=5, sticky=(W, E))
+    ttk.Label(mainframe, textvariable=time_val, font=MyFont).grid(column=2, row=5, sticky=(W, E))
 
-calculating = StringVar()
-calculating.set("")
-ttk.Label(mainframe, textvariable=calculating).grid(column=3, row=5, sticky=(W, E))
+    calculating = StringVar()
+    calculating.set("")
+    ttk.Label(mainframe, textvariable=calculating).grid(column=3, row=5, sticky=(W, E))
 
-ttk.Button(mainframe, text="Next", width=30, command=increment).grid(column=3, row=7, sticky=E)
-ttk.Button(mainframe, text="Previous", width=30, command=decrement).grid(column=1, row=7, sticky=W)
+    ttk.Button(mainframe, text="Next", width=30, command=increment).grid(column=3, row=7, sticky=E)
+    ttk.Button(mainframe, text="Previous", width=30, command=decrement).grid(column=1, row=7, sticky=W)
 
-# Padding around every widget in the frame
-for child in mainframe.winfo_children():
-    child.grid_configure(padx=40, pady=40)
-# Focus on the entry field at first
-problem_entry.focus()
-# Executes function when you press Enter
-root.bind('<Return>', calculate_optimal_makespan)
+    # Padding around every widget in the frame
+    for child in mainframe.winfo_children():
+        child.grid_configure(padx=40, pady=40)
+    # Focus on the entry field at first
+    problem_entry.focus()
+    # Executes function when you press Enter
+    root.bind('<Return>', calculate_optimal_makespan)
 
-# Changing theme
-s = ttk.Style()
-s.theme_use('clam')
-s.configure('TButton', font=MyFont)
+    # Changing theme
+    s = ttk.Style()
+    s.theme_use('clam')
+    s.configure('TButton', font=MyFont)
 
-# Start the infinite loop
-root.mainloop()
+    # Start the infinite loop
+    root.mainloop()
