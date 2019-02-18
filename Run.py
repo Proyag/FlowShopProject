@@ -24,7 +24,7 @@ def run_main(problem):
 
     if best_makespan < prev_best_makespan:
         write_new_best(problem, best_sequence, best_makespan,
-                    taillard, taillard_file, benchmark_file=benchmark_file)
+                       taillard, taillard_file, benchmark_file=benchmark_file)
 
 if __name__ == '__main__':
     # To make command line print complete nd arrays.
