@@ -65,7 +65,7 @@ def roulette_wheel(sequence, makespan):
 
     # Generate arrays of newsize = 3 * previous size, according to RWS
     newsize = 3 * len(makespan)
-    seq = np.ndarray((newsize, sequence.shape[1]))
+    seq = np.ndarray((newsize, sequence.shape[1]), dtype=int)
     mks = np.empty(newsize)
 
     # Generate 'newsize' number of sequences

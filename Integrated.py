@@ -91,7 +91,6 @@ def sort_one_list_by_another(s, m):
 
 
 def sort_and_reduce(s, m):
-    print(s, m)
     s, m = sort_one_list_by_another(s, m)
     s = s[:20]
     m = m[:20]
@@ -198,7 +197,7 @@ def calculate_optimal_makespan(*args):
         # Bring in next job into every position in sequence_list
         init_jobs += 1
         init_job_list = list(range(init_jobs))
-        new_sequence_list = np.array([]).reshape(0, init_jobs)
+        new_sequence_list = np.array([], dtype=int).reshape(0, init_jobs)
         for s in sequence_list:
             for pos in range(s.size + 1):
                 new_sequence_list = np.vstack((new_sequence_list, np.insert(s, pos, init_jobs - 1)))
