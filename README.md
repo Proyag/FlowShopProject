@@ -10,7 +10,7 @@ We used [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) to
 
 Evaluated our method by comparing our results against the [benchmarks published by Eric Taillard](http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf).
 
-## Please see [v1.0](https://github.com/Proyag/FlowShopProject/releases/tag/v1.0) for the original submission version. Newer commits maintain identical funtionality, but the code has been through a major re-factoring to make it less terrible to look at.
+## Please see [v1.0](https://github.com/Proyag/FlowShopProject/releases/tag/v1.0) for the original submitted version. Newer commits maintain identical funtionality, but the code has been through a major re-factoring to make it much less terrible to look at.
 
 <hr/>
 
@@ -18,11 +18,13 @@ Evaluated our method by comparing our results against the [benchmarks published 
 
 `Makespans.xlsx`: Contains Eric Taillard's benchmarks and our results along with the average relative percentage difference (ARPD).
 
-`genetic.py`: contains the genetic algorithms used - inverse mutation, pairwise swap mutation, ordered crossover.
+`genetic.py`: Contains the genetic algorithms used - inverse mutation, pairwise swap mutation, ordered crossover.
+
+`solve_problem.py`: Contains the main optimisation logic.
 
 `Integrated.py`: Runs a GUI to explore the results on our method on the benchmark problems one at a time.
 
-`Run.py`: Runs the optimization algorithm on all the 120 problems in the benchmarks. **WARNING**: Takes hours to run.
+`Run.py ARG`: Runs the optimization algorithm on benchmark number ARG. (v1.0 takes no argument, and runs on all the 120 problems in the benchmarks. Takes ages to run.)
 
 
 
