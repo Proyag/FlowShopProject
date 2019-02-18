@@ -5,6 +5,7 @@ import sys
 
 from itertools import permutations
 
+from utils import *
 import genetic
 
 
