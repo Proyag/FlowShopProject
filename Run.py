@@ -34,7 +34,6 @@ def main():
         # Generate all 24 permutations
         sequence_list = np.array(list(permutations(init_job_list)))
 
-        # This loop will run till init_jobs == jobs
         while init_jobs <= jobs:
             makespan_list = np.array([])
             for seq in sequence_list:
@@ -50,7 +49,6 @@ def main():
 
             # Again, sort and reduce to 20
             sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
-            # print("Best 20\n", sequence_list, makespan_list)
 
             # Now ordered crossover each of the 20 sequences with each other
             # and add to lists
@@ -66,7 +64,7 @@ def main():
             # and reduce to 20 best sequences
             sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
 
-            # Applying mutation. Inverse mutation.
+            # Applying mutation. Inverse Mutation.
             for i in sequence_list:
                 mutated = genetic.inverse_mutation(i)
                 mutated = np.array(mutated)

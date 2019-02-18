@@ -42,7 +42,6 @@ def calculate_optimal_makespan(*args):
     # Generate all 24 permutations
     sequence_list = np.array(list(permutations(init_job_list)))
 
-    # This loop will eventually run till init_jobs <= jobs
     while init_jobs <= jobs:
         makespan_list = np.array([])
         for seq in sequence_list:
@@ -59,8 +58,8 @@ def calculate_optimal_makespan(*args):
         # Again, sort and reduce to 20
         sequence_list, makespan_list = sort_and_reduce(sequence_list, makespan_list)
 
-        # Now ordered crossover each of the 20 sequences
-        # with each other and add to lists
+        # Now ordered crossover each of the 20 sequences with each other
+        # and add to lists
         for i in range(20):
             for j in range(20):
                 if i != j:
