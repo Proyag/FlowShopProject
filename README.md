@@ -10,6 +10,9 @@ We used [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm) to
 
 Evaluated our method by comparing our results against the [benchmarks published by Eric Taillard](http://mistic.heig-vd.ch/taillard/articles.dir/Taillard1993EJOR.pdf).
 
+## Please see [v1.0](https://github.com/Proyag/FlowShopProject/releases/tag/v1.0) for the original submission version. Newer commits maintain identical funtionality, but the code has been through a major re-factoring to make it less terrible to look at.
+
+<hr/>
 
 ### Contents:
 
